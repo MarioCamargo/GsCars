@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Modificar producto</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="Modificar producto"/></h1>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Nombre:" for="nombre" />
+                    <p:inputText id="nombre" value="#{productoController.producto.nombre}" title="Nombre" required="true" requiredMessage="Este campo es requerido."/>
+                    <p:outputLabel value="Precio:" for="precio" />
+                    <p:inputText id="precio" value="#{productoController.producto.precio}" title="Precio" required="true" requiredMessage="Este campo es requerido."/>
+                    <p:outputLabel value="Cantidad:" for="cantidad" />
+                    <p:inputText id="cantidad" value="#{productoController.producto.cantidad}" title="Cantidad" required="true" requiredMessage="Este campo es requerido."/>
+                    <p:outputLabel value="Estado Producto:" for="idEstadoProducto" />
+                    <p:selectOneMenu id="idEstadoProducto" value="#{productoController.producto.idEstadoProducto}"
+                                     converter="estadoProductoConverter"
+                                     required="true" 
+                                     requiredMessage="Seleccione un estado.">
+                        <f:selectItems value="#{productoController.estadoProductoLista}" var="pro"                                       
+                                       itemLabel="#{pro.nombre}"
+                                       itemValue="#{pro}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Categoria Producto:" for="idCategoriaProducto" />
+                    <p:selectOneMenu id="idCategoriaProducto" value="#{productoController.producto.idCategoriaProducto}"
+                                     converter="categoriaProductoConverter"
+                                     required="true" 
+                                     requiredMessage="Seleccione una categoria.">
+                        <f:selectItems value="#{productoController.categoriaProductoLista}" var="pro"
+                                       itemLabel="#{pro.nombre}"
+                                       itemValue="#{pro}"/>
+                    </p:selectOneMenu>
+                    <h:commandButton action="#{productoController.modificarProducto()}" value="Actualizar"/>
+                </p:panelGrid>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+

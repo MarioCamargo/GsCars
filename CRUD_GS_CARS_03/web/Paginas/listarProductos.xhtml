@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Listar productos</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1><h:outputText value="Listar productos"/></h1>
+            <p:dataTable id="lista" var="pro" value="#{productoController.productoLista}" emptyMessage="No se encontraron datos" paginator="true" rows="5" paginatorPosition="botton" editable="true">
+                <p:column id="idProducto" headerText="Codigo">
+                    <p:outputLabel value="#{pro.idProducto}"></p:outputLabel>
+                     </p:column>
+                <p:column id="nombre" headerText="Nombre producto">
+                    <p:outputLabel value="#{pro.nombre}"></p:outputLabel>
+                     </p:column>
+                <p:column id="precio" headerText="Precio unitario">
+                    <p:outputLabel value="#{pro.precio}"></p:outputLabel>
+                     </p:column>
+                <p:column id="cantidad" headerText="Cantidad">
+                    <p:outputLabel value="#{pro.cantidad}"></p:outputLabel>
+                     </p:column>
+                <p:column id="estadoProducto" headerText="Estado producto">
+                    <p:outputLabel value="#{pro.idEstadoProducto.nombre}"></p:outputLabel>
+                     </p:column>
+                <p:column id="categoriaProducto" headerText="Categoria producto">
+                    <p:outputLabel value="#{pro.idCategoriaProducto.nombre}"></p:outputLabel>
+                     </p:column>
+                <p:column headerText="Modificar">
+                    <h:commandButton action="#{productoController.modificar(pro)}" value="Modificar"></h:commandButton>
+                </p:column>
+                 <p:column headerText="Eliminar">
+                    
+                     <h:commandButton id="botonEliminar" action="#{productoController.eliminarProducto(pro)}" 
+                                       onclick="return confirm('¿Desea eliminar el producto permanentemente?')" value="Eliminar">
+                    </h:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form> 
+    </h:body>
+</html>
+
